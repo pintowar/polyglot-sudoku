@@ -13,3 +13,7 @@ log4j = {
            'griffon.app'
 }
 
+
+griffon.jython.dynamicPropertyName = 'py'
+
+griffon.jython.injectInto = ['controller']

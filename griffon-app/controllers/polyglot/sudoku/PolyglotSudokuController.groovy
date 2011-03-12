@@ -1,5 +1,8 @@
 package polyglot.sudoku
 
+import org.python.util.PythonInterpreter;
+import org.springframework.core.io.ClassPathResource
+
 class PolyglotSudokuController {
     // these will be injected by Griffon
     def model
@@ -14,17 +17,19 @@ class PolyglotSudokuController {
     // }
 
     def defineProblem = { evt ->
-        def problems = [
-        "4.....8.5.3..........7......2.....6.....8.4......1.......6.3.7.5..2.....1.4......",
-        ".....6....59.....82....8....45........3........6..3.54...325..6..................",
-        "..3.2.6..9..3.5..1..18.64....81.29..7.......8..67.82....26.95..8..2.3..9..5.1.3.."]
-        
-        println "Evento iniciado!"
-        model.problem = problems[new Random().nextInt(3)]
-        println "Evento finalizado!"
+    	def file = new ClassPathResource("top95.txt", app.class.classLoader).getFile()
+        def problems = []
+        file.eachLine{problems << it}
+       
+        model.problem = problems[new Random().nextInt(problems.size())]
     }
 
     def solveProblem = { evt ->
-        model.problem = "................................................................................."
+    	def res = new ClassPathResource("jython/solver.py", app.class.classLoader)
+    	def interp = new PythonInterpreter()
+		interp.execfile(res.inputStream )
+		def obj = interp.eval("solve('${model.problem}')")
+
+        model.problem = obj.keySet().sort().collect{obj[it]}.join('')
     }    
 }

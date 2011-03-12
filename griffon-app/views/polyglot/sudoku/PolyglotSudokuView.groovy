@@ -4,10 +4,10 @@ application(title: 'Polyglot Sudoku',
   pack: true,
   locationRelativeTo: null,
   locationByPlatform:true,
-  iconImage: imageIcon('/griffon-icon-48x48.png').image,
-  iconImages: [imageIcon('/griffon-icon-48x48.png').image,
-               imageIcon('/griffon-icon-32x32.png').image,
-               imageIcon('/griffon-icon-16x16.png').image]) {
+  iconImage: imageIcon('/gnome-sudoku-48x48.png').image,
+  iconImages: [imageIcon('/gnome-sudoku-48x48.png').image,
+               imageIcon('/gnome-sudoku-32x32.png').image,
+               imageIcon('/gnome-sudoku-16x16.png').image]) {
     // add content here
     menuBar{
         menu(text:"File"){

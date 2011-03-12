@@ -7,3 +7,4 @@ root {
         view = '*'
     }
 }
+root.'JythonGriffonAddon'.addon=true
