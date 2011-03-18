@@ -12,7 +12,10 @@ application(title: 'Polyglot Sudoku',
     menuBar{
         menu(text:"File"){
             menuItem(text:"New...", actionPerformed: controller.&defineProblem)
-            menuItem(text:"Solve", actionPerformed: controller.&solveProblem)
+            menu(text:"Solvers"){
+            	menuItem(text:"Python", actionPerformed: controller.&solvePython)
+            	menuItem(text:"Groovy", actionPerformed: controller.&solveGroovy)
+            }
             separator()
             menuItem(text:"Quit", actionPerformed: {System.exit(0)})
         }
